@@ -1,0 +1,58 @@
+[
+  {
+    "type": "response.created",
+    "response": {
+      "id": "response-1",
+      "object": "realtime.response",
+      "output": [],
+      "status": "in_progress",
+      "status_details": "unimplemented"
+    }
+  },
+  {
+    "type": "response.output_audio.delta",
+    "response_id": "response-1",
+    "delta": "AAAAAA=="
+  },
+  {
+    "type": "response.output_audio_transcript.delta",
+    "response_id": "response-1",
+    "delta": "Sim?"
+  },
+  {
+    "type": "response.output_audio.delta",
+    "response_id": "response-1",
+    "delta": "AAAAAA=="
+  },
+  {
+    "type": "response.output_audio.delta",
+    "response_id": "response-1",
+    "delta": "AAAAAA=="
+  },
+  {
+    "type": "response.done",
+    "response": {
+      "id": "response-1",
+      "object": "realtime.response",
+      "output": [
+        {
+          "id": "item-1",
+          "object": "realtime.item",
+          "type": "message",
+          "status": "completed",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "audio",
+              "transcript": "Sim?"
+            }
+          ],
+          "replayed": false
+        }
+      ],
+      "status": "completed",
+      "status_details": "unimplemented"
+    },
+    "response_id": "response-1"
+  }
+]

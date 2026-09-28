@@ -1,0 +1,19 @@
+{
+  "name": "jarvis-local-spike",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "gateway": "node --experimental-strip-types apps/mac-gateway/src/server.ts",
+    "probe:codex": "node --experimental-strip-types apps/mac-gateway/src/probe.ts",
+    "test": "node --test --experimental-strip-types packages/codex-adapter/test/*.test.ts packages/terminal-agents/test/*.test.ts apps/mac-gateway/test/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "probe:agents": "node --experimental-strip-types apps/mac-gateway/src/probe-agents.ts"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.1",
+    "typescript": "7.0.2"
+  },
+  "engines": {
+    "node": ">=22.18"
+  }
+}

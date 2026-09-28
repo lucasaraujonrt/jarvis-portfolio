@@ -1,0 +1,255 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A11000000000000000000001 /* JarvisSpikeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12000000000000000000001 /* JarvisSpikeApp.swift */; };
+		A11000000000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12000000000000000000002 /* ContentView.swift */; };
+		A11000000000000000000003 /* SpikeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12000000000000000000003 /* SpikeViewModel.swift */; };
+		A11000000000000000000004 /* AudioProbe.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12000000000000000000004 /* AudioProbe.swift */; };
+		A11000000000000000000005 /* GatewayClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12000000000000000000005 /* GatewayClient.swift */; };
+		A11000000000000000000006 /* MWDATCore in Frameworks */ = {isa = PBXBuildFile; productRef = A18000000000000000000001 /* MWDATCore */; };
+		A11000000000000000000007 /* MWDATCamera in Frameworks */ = {isa = PBXBuildFile; productRef = A18000000000000000000002 /* MWDATCamera */; };
+		A11000000000000000000008 /* GatewaySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12000000000000000000009 /* GatewaySettings.swift */; };
+		4ECFF2871E91D4874F4DBC52 /* JarvisTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EB353FA40E74FBE201CD54 /* JarvisTask.swift */; };
+		E28D2CDA992CE344DA8896FC /* JarvisHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829352A2DD8DD11BB95F8F4F /* JarvisHomeView.swift */; };
+		1DE5FBB96D2EC9CE21F553FB /* JarvisVoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F423FBB435F8A9A6D82B5922 /* JarvisVoiceView.swift */; };
+		4DCF8626F639E3B9253611EE /* JarvisTaskViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09152977E036AB9E0373860 /* JarvisTaskViews.swift */; };
+		E78DF1FEC339780E383B0DC8 /* JarvisConnectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A1589B6C0A6A72A293D237 /* JarvisConnectionsView.swift */; };
+		8D3E1D213A7A0F1800B931FA /* SimulatorPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DAB64CC03241ABAC043E28 /* SimulatorPreview.swift */; };
+		C05C15AD203121F457E61957 /* DiagnosticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1833351EE6634D6E09897B7 /* DiagnosticsView.swift */; };
+		F896A57FAA79D60CE8DE9A0D /* VoiceSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D227047C8FBF3F305EE07600 /* VoiceSignal.swift */; };
+		EE2A4F9CA866EB776D8769DF /* XAIAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078F9B83CAB00F3AE47FA1BA /* XAIAudio.swift */; };
+		C9CC7EB0535D66ACB696DDCA /* XAIRealtimeSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D830534A2B733D640620CAA /* XAIRealtimeSession.swift */; };
+		84B46F4040939E99B1CAEF68 /* XAIVoiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F32574EA7CF834FF0307D9 /* XAIVoiceProtocol.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A12000000000000000000001 /* JarvisSpikeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JarvisSpikeApp.swift; sourceTree = "<group>"; };
+		A12000000000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A12000000000000000000003 /* SpikeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpikeViewModel.swift; sourceTree = "<group>"; };
+		A12000000000000000000004 /* AudioProbe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioProbe.swift; sourceTree = "<group>"; };
+		A12000000000000000000005 /* GatewayClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewayClient.swift; sourceTree = "<group>"; };
+		A12000000000000000000006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A12000000000000000000007 /* JarvisSpike.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JarvisSpike.entitlements; sourceTree = "<group>"; };
+		A12000000000000000000008 /* JarvisSpike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JarvisSpike.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A12000000000000000000009 /* GatewaySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewaySettings.swift; sourceTree = "<group>"; };
+		E1EB353FA40E74FBE201CD54 /* JarvisTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JarvisTask.swift; sourceTree = "<group>"; };
+		829352A2DD8DD11BB95F8F4F /* JarvisHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JarvisHomeView.swift; sourceTree = "<group>"; };
+		F423FBB435F8A9A6D82B5922 /* JarvisVoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JarvisVoiceView.swift; sourceTree = "<group>"; };
+		F09152977E036AB9E0373860 /* JarvisTaskViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JarvisTaskViews.swift; sourceTree = "<group>"; };
+		B9A1589B6C0A6A72A293D237 /* JarvisConnectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JarvisConnectionsView.swift; sourceTree = "<group>"; };
+		44DAB64CC03241ABAC043E28 /* SimulatorPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatorPreview.swift; sourceTree = "<group>"; };
+		B1833351EE6634D6E09897B7 /* DiagnosticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsView.swift; sourceTree = "<group>"; };
+		D227047C8FBF3F305EE07600 /* VoiceSignal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceSignal.swift; sourceTree = "<group>"; };
+		078F9B83CAB00F3AE47FA1BA /* XAIAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XAIAudio.swift; sourceTree = "<group>"; };
+		2D830534A2B733D640620CAA /* XAIRealtimeSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XAIRealtimeSession.swift; sourceTree = "<group>"; };
+		E2F32574EA7CF834FF0307D9 /* XAIVoiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XAIVoiceProtocol.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A13000000000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A11000000000000000000007 /* MWDATCamera in Frameworks */,
+				A11000000000000000000006 /* MWDATCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A14000000000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				A14000000000000000000002 /* JarvisSpike */,
+				A14000000000000000000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A14000000000000000000002 /* JarvisSpike */ = {
+			isa = PBXGroup;
+			children = (
+				A12000000000000000000001 /* JarvisSpikeApp.swift */,
+				A12000000000000000000002 /* ContentView.swift */,
+				A12000000000000000000003 /* SpikeViewModel.swift */,
+				078F9B83CAB00F3AE47FA1BA /* XAIAudio.swift */,
+				2D830534A2B733D640620CAA /* XAIRealtimeSession.swift */,
+				E2F32574EA7CF834FF0307D9 /* XAIVoiceProtocol.swift */,
+				A12000000000000000000004 /* AudioProbe.swift */,
+				D227047C8FBF3F305EE07600 /* VoiceSignal.swift */,
+				A12000000000000000000005 /* GatewayClient.swift */,
+				A12000000000000000000009 /* GatewaySettings.swift */,
+				B1833351EE6634D6E09897B7 /* DiagnosticsView.swift */,
+				44DAB64CC03241ABAC043E28 /* SimulatorPreview.swift */,
+				B9A1589B6C0A6A72A293D237 /* JarvisConnectionsView.swift */,
+				F09152977E036AB9E0373860 /* JarvisTaskViews.swift */,
+				F423FBB435F8A9A6D82B5922 /* JarvisVoiceView.swift */,
+				829352A2DD8DD11BB95F8F4F /* JarvisHomeView.swift */,
+				E1EB353FA40E74FBE201CD54 /* JarvisTask.swift */,
+				A12000000000000000000006 /* Info.plist */,
+				A12000000000000000000007 /* JarvisSpike.entitlements */,
+			);
+			path = JarvisSpike;
+			sourceTree = "<group>";
+		};
+		A14000000000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (A12000000000000000000008 /* JarvisSpike.app */);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A10000000000000000000001 /* JarvisSpike */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A17000000000000000000002 /* Build configuration list for PBXNativeTarget "JarvisSpike" */;
+			buildPhases = (
+				A15000000000000000000001 /* Sources */,
+				A13000000000000000000001 /* Frameworks */,
+				A16000000000000000000001 /* Resources */,
+			);
+			buildRules = ();
+			dependencies = ();
+			name = JarvisSpike;
+			packageProductDependencies = (
+				A18000000000000000000001 /* MWDATCore */,
+				A18000000000000000000002 /* MWDATCamera */,
+			);
+			productName = JarvisSpike;
+			productReference = A12000000000000000000008 /* JarvisSpike.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A10000000000000000000000 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2660;
+				LastUpgradeCheck = 2660;
+				TargetAttributes = { A10000000000000000000001 = { CreatedOnToolsVersion = 26.6; }; };
+			};
+			buildConfigurationList = A17000000000000000000001 /* Build configuration list for PBXProject "JarvisSpike" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (en, Base);
+			mainGroup = A14000000000000000000001;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (A19000000000000000000001 /* XCRemoteSwiftPackageReference "meta-wearables-dat-ios" */);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = A14000000000000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (A10000000000000000000001 /* JarvisSpike */);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A16000000000000000000001 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A15000000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A11000000000000000000001 /* JarvisSpikeApp.swift in Sources */,
+				A11000000000000000000002 /* ContentView.swift in Sources */,
+				A11000000000000000000003 /* SpikeViewModel.swift in Sources */,
+				EE2A4F9CA866EB776D8769DF /* XAIAudio.swift in Sources */,
+				C9CC7EB0535D66ACB696DDCA /* XAIRealtimeSession.swift in Sources */,
+				84B46F4040939E99B1CAEF68 /* XAIVoiceProtocol.swift in Sources */,
+				A11000000000000000000004 /* AudioProbe.swift in Sources */,
+				F896A57FAA79D60CE8DE9A0D /* VoiceSignal.swift in Sources */,
+				A11000000000000000000005 /* GatewayClient.swift in Sources */,
+				A11000000000000000000008 /* GatewaySettings.swift in Sources */,
+				C05C15AD203121F457E61957 /* DiagnosticsView.swift in Sources */,
+				8D3E1D213A7A0F1800B931FA /* SimulatorPreview.swift in Sources */,
+				E78DF1FEC339780E383B0DC8 /* JarvisConnectionsView.swift in Sources */,
+				4DCF8626F639E3B9253611EE /* JarvisTaskViews.swift in Sources */,
+				1DE5FBB96D2EC9CE21F553FB /* JarvisVoiceView.swift in Sources */,
+				E28D2CDA992CE344DA8896FC /* JarvisHomeView.swift in Sources */,
+				4ECFF2871E91D4874F4DBC52 /* JarvisTask.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A1A000000000000000000001 /* Debug */ = {isa = XCBuildConfiguration; buildSettings = {CLANG_ENABLE_MODULES = YES; IPHONEOS_DEPLOYMENT_TARGET = 17.2; SDKROOT = iphoneos; SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG"; SWIFT_VERSION = 6.0; }; name = Debug; };
+		A1A000000000000000000002 /* Release */ = {isa = XCBuildConfiguration; buildSettings = {CLANG_ENABLE_MODULES = YES; IPHONEOS_DEPLOYMENT_TARGET = 17.2; SDKROOT = iphoneos; SWIFT_COMPILATION_MODE = wholemodule; SWIFT_VERSION = 6.0; }; name = Release; };
+		A1A000000000000000000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLIENT_TOKEN = "";
+				CODE_SIGN_ENTITLEMENTS = JarvisSpike/JarvisSpike.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = JarvisSpike/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks");
+				MARKETING_VERSION = 0.1;
+				META_APP_ID = 0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.jarvis.spike;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		A1A000000000000000000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLIENT_TOKEN = "";
+				CODE_SIGN_ENTITLEMENTS = JarvisSpike/JarvisSpike.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = JarvisSpike/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks");
+				MARKETING_VERSION = 0.1;
+				META_APP_ID = 0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.jarvis.spike;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A17000000000000000000001 /* Build configuration list for PBXProject "JarvisSpike" */ = {isa = XCConfigurationList; buildConfigurations = (A1A000000000000000000001 /* Debug */, A1A000000000000000000002 /* Release */); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		A17000000000000000000002 /* Build configuration list for PBXNativeTarget "JarvisSpike" */ = {isa = XCConfigurationList; buildConfigurations = (A1A000000000000000000003 /* Debug */, A1A000000000000000000004 /* Release */); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A19000000000000000000001 /* XCRemoteSwiftPackageReference "meta-wearables-dat-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/meta-wearables-dat-ios";
+			requirement = {kind = exactVersion; version = 0.9.0;};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A18000000000000000000001 /* MWDATCore */ = {isa = XCSwiftPackageProductDependency; package = A19000000000000000000001 /* XCRemoteSwiftPackageReference "meta-wearables-dat-ios" */; productName = MWDATCore; };
+		A18000000000000000000002 /* MWDATCamera */ = {isa = XCSwiftPackageProductDependency; package = A19000000000000000000001 /* XCRemoteSwiftPackageReference "meta-wearables-dat-ios" */; productName = MWDATCamera; };
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = A10000000000000000000000 /* Project object */;
+}

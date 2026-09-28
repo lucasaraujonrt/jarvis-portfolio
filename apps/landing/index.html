@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jarvis — um pedido falado, do ouvido ao seu Mac</title>
+  <meta name="description" content="Jarvis é um protótipo de portfólio: um pedido por voz no iPhone chega ao Codex no Mac e cria um arquivo, com andamento e aprovação no app.">
+  <link rel="icon" href="favicon.svg?v=1" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png?v=1" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="color-scheme" content="light only">
+  <link rel="stylesheet" href="styles.css?v=12">
+  <script type="importmap">
+    { "imports": {
+      "three": "https://unpkg.com/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.170.0/examples/jsm/"
+    } }
+  </script>
+</head>
+<body data-chapter="0">
+  <div class="giant" aria-hidden="true"><span id="giant-word">Jarvis</span></div>
+
+  <canvas id="stage" class="stage" data-i18n-aria="aria.stage" aria-label="Modelo 3D ilustrativo de óculos inteligentes. Arraste para girar."></canvas>
+  <div class="stage-fallback" id="stage-fallback" hidden aria-hidden="true">
+    <svg viewBox="0 0 320 110"><path d="M14 22h292v10c0 6-4 9-8 10l-8 44c-2 12-12 20-24 20h-60c-12 0-22-8-26-20l-10-30h-20l-10 30c-4 12-14 20-26 20H54c-12 0-22-8-24-20l-8-44c-4-1-8-4-8-10z" fill="#1c1c1e"/><path d="M40 40h92l-8 38c-2 9-9 14-18 14H66c-9 0-16-5-18-14zM188 40h92l-8 38c-2 9-9 14-18 14h-40c-9 0-16-5-18-14z" fill="#3a3f47"/><circle cx="28" cy="30" r="4" fill="#48484a"/><circle cx="292" cy="30" r="3" fill="#8e8e93"/></svg>
+  </div>
+
+  <svg class="leaders" id="leaders" aria-hidden="true"></svg>
+  <div class="callouts" id="callouts" aria-hidden="true">
+    <span class="callout" data-anchor="camera" data-i18n="callouts.camera">câmera</span>
+    <span class="callout" data-anchor="led" data-i18n="callouts.led">LED de captura</span>
+    <span class="callout" data-anchor="mic" data-i18n="callouts.mic">microfone</span>
+    <span class="callout" data-anchor="speaker" data-i18n="callouts.speaker">alto-falante aberto</span>
+  </div>
+
+  <div class="ear-waves" id="ear-waves" aria-hidden="true"><i></i><i></i><i></i></div>
+
+  <header class="nav">
+    <a class="wordmark" href="#top" data-i18n-aria="aria.home" aria-label="Jarvis, início">jarvis</a>
+    <nav class="nav-links" data-i18n-aria="aria.chapters" aria-label="Capítulos">
+      <a href="#ouvir" data-i18n="nav.listen">Ouvir</a>
+      <a href="#mac" data-i18n="nav.mac">Mac</a>
+      <a href="#aprovar" data-i18n="nav.approve">Aprovar</a>
+      <a href="#estado" data-i18n="nav.status">Estado</a>
+      <a href="#usar" data-i18n="nav.use">Usar</a>
+    </nav>
+    <div class="lang" role="group" data-i18n-aria="langGroup" aria-label="Idioma">
+      <button type="button" data-lang="pt" aria-pressed="true" aria-label="Português">
+        <svg viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" rx="2" fill="#009b3a"/><polygon points="10,1.4 18.4,7 10,12.6 1.6,7" fill="#fedf00"/><circle cx="10" cy="7" r="2.5" fill="#002776"/></svg>
+      </button>
+      <button type="button" data-lang="en" aria-pressed="false" aria-label="English">
+        <svg viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" rx="2" fill="#fff"/><g fill="#b22234"><rect width="20" height="1.08"/><rect y="2.16" width="20" height="1.08"/><rect y="4.32" width="20" height="1.08"/><rect y="6.48" width="20" height="1.08"/><rect y="8.64" width="20" height="1.08"/><rect y="10.8" width="20" height="1.08"/><rect y="12.92" width="20" height="1.08"/></g><rect width="8.2" height="7.56" rx="1" fill="#3c3b6e"/></svg>
+      </button>
+      <button type="button" data-lang="es" aria-pressed="false" aria-label="Español">
+        <svg viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" rx="2" fill="#c60b1e"/><rect y="3.5" width="20" height="7" fill="#ffc400"/></svg>
+      </button>
+    </div>
+    <a class="btn btn-small" href="https://github.com/lucasaraujonrt/jarvis-portfolio" data-i18n="nav.code">Código</a>
+  </header>
+
+  <ol class="progress" id="progress" aria-hidden="true"></ol>
+
+  <main id="top">
+    <section class="chapter hero" data-chapter="0">
+      <div class="hero-foot">
+        <div class="copy hero-copy">
+          <p class="eyebrow" data-i18n="hero.eyebrow">Protótipo · óculos Meta, iPhone e o seu Mac</p>
+          <h1><span data-i18n="hero.title1">Diga o nome.</span><br><span data-i18n="hero.title2">Seu Mac trabalha.</span></h1>
+          <p class="lede" data-i18n="hero.lede">Jarvis liga os óculos aos agentes de terminal do seu computador. Você fala, o agente executa, e você decide pelo iPhone.</p>
+        </div>
+
+        <div class="copy voice" id="voice" data-state="idle">
+          <div class="voice-visual" aria-hidden="true">
+            <div class="wave" id="wave"></div>
+            <div class="rings" id="rings"><i></i><i></i><i></i><b><svg viewBox="0 0 24 24"><path d="M4 9h3l5-4v14l-5-4H4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></b></div>
+          </div>
+          <p class="voice-title" id="voice-title" aria-live="polite">Pronto para ouvir</p>
+          <p class="voice-sub" id="voice-sub">Seu próximo pedido começa com a sua voz.</p>
+          <button class="btn" id="voice-btn" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <span id="voice-label">Falar com Jarvis</span>
+          </button>
+        </div>
+      </div>
+      <p class="drag-hint" data-i18n="drag" aria-hidden="true">Arraste os óculos para girar</p>
+    </section>
+
+    <section class="chapter side-left" id="ouvir" data-chapter="1">
+      <div class="copy">
+        <p class="eyebrow"><span class="num">01</span> <span data-i18n="c1.kicker">Ouvir</span></p>
+        <h2 data-i18n="c1.title">Toque para falar. Ou ative pela voz.</h2>
+        <p data-i18n="c1.body">Com a sessão dos óculos ativa, Falar com Jarvis abre a conversa. A opção “Ativar ao dizer Jarvis” também inicia pela palavra de ativação. A voz Zagan usa a API da xAI.</p>
+        <p class="fine" data-i18n="c1.fine">A rota de microfone e áudio dos óculos depende da sessão Bluetooth ativa e deve ser conferida no dispositivo.</p>
+      </div>
+    </section>
+
+    <section class="chapter sentence" data-chapter="2">
+      <div class="copy wide">
+        <p class="eyebrow"><span class="num">02</span> <span data-i18n="c2.kicker">Delegar</span></p>
+        <p class="said" id="said"></p>
+        <p class="said-note" data-i18n="c2.note">Fale o pedido inteiro, do jeito que sai. O Jarvis entende a intenção e envia para o agente escolhido, no projeto certo do seu Mac.</p>
+      </div>
+    </section>
+
+    <section class="chapter side-left" id="mac" data-chapter="3">
+      <div class="copy">
+        <p class="eyebrow"><span class="num">03</span> <span data-i18n="c3.kicker">Trabalhar</span></p>
+        <h2 data-i18n="c3.title">O agente que você já usa. No seu Mac.</h2>
+        <p data-i18n="c3.body">Um gateway roda no seu Mac e envia a tarefa ao agente escolhido. O workspace é fixado ao iniciar o gateway; o CLI pode enviar contexto ao seu provedor.</p>
+        <div class="segmented" role="tablist" data-i18n-aria="aria.agents" aria-label="Agente de terminal">
+          <button role="tab" aria-selected="true" data-agent="codex">Codex</button>
+          <button role="tab" aria-selected="false" data-agent="claude">Claude Code</button>
+          <button role="tab" aria-selected="false" data-agent="grok">Grok Code</button>
+        </div>
+        <div class="term" aria-live="polite">
+          <div class="term-bar"><span id="term-path">~/clientes/acme · codex</span><span class="term-state" id="term-state" data-s="ok">confirmado no teste físico</span></div>
+          <pre class="term-body" id="term-body"></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter side-right" id="aprovar" data-chapter="4">
+      <div class="copy">
+        <p class="eyebrow"><span class="num">04</span> <span data-i18n="c4.kicker">Aprovar</span></p>
+        <h2 data-i18n="c4.title">Permissões aparecem no iPhone.</h2>
+        <p data-i18n="c4.body">Quando o agente solicita permissão, ele espera sua decisão no iPhone. Ela vale uma vez; sem resposta em dois minutos, o pedido é recusado.</p>
+        <div class="task" id="task" data-status="needsApproval">
+          <p class="task-status" id="task-status">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 11V5a1.5 1.5 0 0 1 3 0v5V3.5a1.5 1.5 0 0 1 3 0V10V5a1.5 1.5 0 0 1 3 0v8c0 4.4-3 8-7.5 8C6 21 4 18 3.4 16L2 12.5a1.5 1.5 0 0 1 2.7-1.3L6 13.5V7a1 1 0 0 1 2 0z"/></svg>
+            <span id="task-status-label">Sua aprovação</span>
+          </p>
+          <p class="task-title" data-i18n="c4.taskTitle">Editar briefing.md</p>
+          <p class="task-detail" id="task-detail">Codex quer alterar um arquivo em ~/clientes/acme.</p>
+          <div class="task-actions" id="task-actions">
+            <button class="btn" type="button" data-answer="yes" data-i18n="c4.allow">Permitir uma vez</button>
+            <button class="btn btn-quiet" type="button" data-answer="no" data-i18n="c4.deny">Recusar</button>
+          </div>
+          <button class="task-reset" id="task-reset" type="button" data-i18n="c4.again" hidden>Ver de novo</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter side-left vision" data-chapter="5">
+      <div class="copy">
+        <p class="eyebrow"><span class="num">05</span> <span data-i18n="c5.kicker">Enxergar</span> <span class="tag" data-i18n="c5.tag">experimento</span></p>
+        <h2 data-i18n="c5.title">“Olha esse quadro.”</h2>
+        <p data-i18n="c5.body">O app pode anexar o frame mais recente da câmera a um pedido. Acompanhar uma cena continuamente, junto com microfone e resposta nos óculos, ainda precisa de validação física.</p>
+      </div>
+    </section>
+
+    <section class="chapter side-right" data-chapter="6">
+      <div class="copy">
+        <p class="eyebrow"><span class="num">06</span> <span data-i18n="c6.kicker">Responder</span></p>
+        <h2 data-i18n="c6.title">A resposta volta pelo ouvido.</h2>
+        <div class="reply">
+          <div class="rings rings-static" aria-hidden="true"><i></i><i></i><i></i><b><svg viewBox="0 0 24 24"><path d="M4 9h3l5-4v14l-5-4H4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></b></div>
+          <p class="reply-text" data-i18n="c6.reply">“Pronto. Adicionei as notas da reunião no briefing da Acme.”</p>
+        </div>
+        <p data-i18n="c6.body">O app envia a resposta falada quando a rota de áudio está ativa. O andamento e o texto ficam na aba Tarefas do iPhone.</p>
+      </div>
+    </section>
+
+    <section class="chapter status" id="estado" data-chapter="7">
+      <div class="copy wide">
+        <p class="eyebrow"><span class="num">07</span> <span data-i18n="c7.kicker">Estado real · setembro de 2026</span></p>
+        <h2 data-i18n="c7.title">Um protótipo, contado sem exagero.</h2>
+        <dl class="spec">
+          <div><dt>“Jarvis” abre a conversa nos óculos</dt><dd data-s="wip">validação física parcial</dd></div>
+          <div><dt>Conversa em tempo real com a voz Zagan</dt><dd data-s="wip">em validação</dd></div>
+          <div><dt>Codex cria e edita arquivos por pedido falado</dt><dd data-s="ok">confirmado no teste físico</dd></div>
+          <div><dt>Grok Code lê e resume o projeto</dt><dd data-s="ok">confirmado no teste físico</dd></div>
+          <div><dt>Claude Code</dt><dd data-s="wip">teste físico pendente</dd></div>
+          <div><dt>Aprovar, recusar e cancelar pelo iPhone</dt><dd data-s="wip">em validação</dd></div>
+          <div><dt>Acompanhar uma cena pela câmera</dt><dd data-s="wip">validação física pendente</dd></div>
+          <div><dt>Reconexão automática dos óculos</dt><dd data-s="no">não implementado</dd></div>
+          <div><dt>Live Activity na tela bloqueada</dt><dd data-s="no">não implementado</dd></div>
+          <div><dt>Avisos por voz sem você perguntar</dt><dd data-s="no">não implementado</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="chapter cta" id="codigo" data-chapter="8">
+      <div class="copy wide">
+        <h2><span data-i18n="cta.title1">Jarvis como portfólio.</span><br><span data-i18n="cta.title2">Voz, agentes e aprovação em um fluxo real.</span></h2>
+        <p class="lede" data-i18n="cta.lede">A demo de 1:03 no README mostra voz no iPhone, Codex no Mac e um arquivo criado. O guia abaixo separa avaliação local e reprodução nos óculos.</p>
+        <a class="btn" href="https://github.com/lucasaraujonrt/jarvis-portfolio" data-i18n="cta.button">Ver código e demo</a>
+      </div>
+    </section>
+
+    <section class="chapter guide" id="usar" data-chapter="9">
+      <div class="copy wide">
+        <p class="eyebrow"><span class="num">08</span> <span data-i18n="guide.kicker">Começar</span></p>
+        <h2 data-i18n="guide.title">Avalie o código. Depois reproduza a demo.</h2>
+        <p data-i18n="guide.lede">Sem hardware ou serviços pagos, rode npm ci, npm test e npm run typecheck. O roteiro completo está em docs/SETUP.md.</p>
+        <div class="guide-grid">
+          <div>
+            <h3 data-i18n="guide.setupTitle">Configurar</h3>
+            <ol class="steps">
+              <li><strong data-i18n="guide.s1t">O que você precisa</strong><span data-i18n="guide.s1b">Um Mac acordado com Node 22.18 ou mais novo, um iPhone com iOS 17.2 ou mais novo, e óculos Meta pareados no app Meta AI, com Developer Mode ligado.</span></li>
+              <li><strong data-i18n="guide.s2t">Agente no Mac</strong><span data-i18n="guide.s2b">Instale e autentique o Codex para repetir a demo. Claude Code e Grok Code são opcionais.</span></li>
+              <li><strong data-i18n="guide.s3t">Chave de voz</strong><span data-i18n="guide.s3b">Copie .env.example para .env e preencha XAI_API_KEY no Mac. A API de voz pode ter custo; os testes locais não usam essa chave.</span></li>
+              <li><strong data-i18n="guide.s4t">Gateway</strong><span data-i18n="guide.s4b">Gere um token com openssl rand -hex 24 e salve em JARVIS_GATEWAY_TOKEN no .env. Carregue o .env e suba o gateway no IP local, porta 4317, com --workspace em uma pasta descartável. Não exponha a porta à internet.</span></li>
+              <li><strong data-i18n="guide.s5t">App no iPhone</strong><span data-i18n="guide.s5b">Abra apps/ios/JarvisSpike.xcodeproj no Xcode; configure seu Team e bundle ID. Em Developer Mode, use META_APP_ID=0 e CLIENT_TOKEN vazio. Instale no iPhone e, em Conexões, use http://IP-do-Mac:4317, o mesmo token do .env e Codex.</span></li>
+            </ol>
+          </div>
+          <div>
+            <h3 data-i18n="guide.useTitle">Usar</h3>
+            <ol class="steps">
+              <li><strong data-i18n="guide.u1t">Conecte os óculos</strong><span data-i18n="guide.u1b">Toque Conectar óculos, termine o registro no Meta AI e volte para Iniciar sessão.</span></li>
+              <li><strong data-i18n="guide.u2t">Fale</strong><span data-i18n="guide.u2b">Na aba Jarvis, toque Falar com Jarvis e peça ao Codex para criar um arquivo. Dizer “Jarvis” antes é opcional quando a ativação por voz está ligada.</span></li>
+              <li><strong data-i18n="guide.u3t">Aprove</strong><span data-i18n="guide.u3b">Se o agente precisar de permissão, o iPhone mostra Permitir uma vez ou Recusar. Sem resposta em dois minutos, o pedido é recusado.</span></li>
+              <li><strong data-i18n="guide.u4t">Confira o resultado</strong><span data-i18n="guide.u4b">Confira o arquivo no Mac. Texto e andamento ficam na aba Tarefas; valide o áudio nos óculos separadamente.</span></li>
+            </ol>
+          </div>
+        </div>
+        <div class="prompt-block">
+          <h3 data-i18n="prompts.title">Prompts para o seu agente</h3>
+          <p data-i18n="prompts.lede">Cole um por vez no Codex, no Claude Code ou no Grok. Ele para no fim da etapa e não pede a chave no chat.</p>
+          <div class="prompt-grid">
+            <article class="prompt-card">
+              <p class="num">01</p>
+              <h4 data-i18n="prompts.gatewayTitle">Gateway</h4>
+              <p data-i18n="prompts.gatewayHint">Sobe o gateway no Mac e para antes do iPhone.</p>
+              <button type="button" class="btn btn-small" data-copy="gateway"><span data-i18n="prompts.copy">Copiar prompt</span></button>
+              <details>
+                <summary data-i18n="prompts.preview">Ver o prompt</summary>
+                <pre data-prompt-view="gateway"></pre>
+              </details>
+            </article>
+            <article class="prompt-card">
+              <p class="num">02</p>
+              <h4 data-i18n="prompts.iphoneTitle">iPhone</h4>
+              <p data-i18n="prompts.iphoneHint">Instala o app e preenche Conexões. Não mexe no gateway.</p>
+              <button type="button" class="btn btn-small" data-copy="iphone"><span data-i18n="prompts.copy">Copiar prompt</span></button>
+              <details>
+                <summary data-i18n="prompts.preview">Ver o prompt</summary>
+                <pre data-prompt-view="iphone"></pre>
+              </details>
+            </article>
+            <article class="prompt-card">
+              <p class="num">03</p>
+              <h4 data-i18n="prompts.glassesTitle">Óculos</h4>
+              <p data-i18n="prompts.glassesHint">Guia o pareamento e o primeiro pedido falado.</p>
+              <button type="button" class="btn btn-small" data-copy="glasses"><span data-i18n="prompts.copy">Copiar prompt</span></button>
+              <details>
+                <summary data-i18n="prompts.preview">Ver o prompt</summary>
+                <pre data-prompt-view="glasses"></pre>
+              </details>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span data-i18n="foot.proto">Jarvis · protótipo</span>
+    <span data-i18n="foot.note">Modelo 3D ilustrativo. Sem afiliação com Meta, Ray-Ban, OpenAI, Anthropic ou xAI.</span>
+  </footer>
+
+  <script src="main.js?v=12" type="module"></script>
+</body>
+</html>
